@@ -80,7 +80,7 @@ namespace deckcards
 
                     case "6":
                         Console.WriteLine("Case 6 : Start ");
-                        d1.Shuffle(309);
+                        d1.Shuffle();
                         AssignCards(d1, Players[0], 5);
 
                         if(Players.Count > 0)
@@ -164,6 +164,11 @@ namespace deckcards
                                     }
                                 }
                             }
+                            
+                            p.hand.Clear();
+                            d1.Reset();
+                            d1.Shuffle();
+
                             DisplayIntrunction();
                         } else {
                             Utils.WriteWarning("Input your name first!!!");
