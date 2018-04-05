@@ -60,7 +60,31 @@ public class Deck {
     public void listCard(){
         foreach (var card in cards)
         {
-            System.Console.WriteLine($"Card: {card.suit} {card.stringVal}");
+            // System.Console.WriteLine($"Card: {card.suit} {card.stringVal}");
+            switch(card.suit)
+            {
+                case "♥":
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    break;
+                case "♦":
+                    Console.ForegroundColor = ConsoleColor.DarkYellow;
+                    break;
+                case "♣":
+                    Console.ForegroundColor = ConsoleColor.Blue;
+                    break;
+                case "♠":
+                    Console.ForegroundColor = ConsoleColor.Cyan;
+                    break;
+            }
+
+            System.Console.Write("Card:");
+            System.Console.Write($" {card.suit} {card.stringVal}");
+            System.Console.WriteLine();
+            
+            Console.ResetColor();
+            // Console.ForegroundColor = ConsoleColor.Green;
+            // System.Console.Write("Card:");
+
         }
     }
 }

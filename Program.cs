@@ -4,6 +4,7 @@ namespace deckcards
 {
     class Program
     {
+
         static void Main(string[] args)
         {
             Deck d1 = new Deck();
@@ -12,7 +13,8 @@ namespace deckcards
 
             string Activity;
             DisplayIntrunction();
-            // Int32.TryParse(Console.ReadLine(), out Activity);
+
+            System.Console.Write("Please select the option: ");
             Activity = Console.ReadLine();
 
             while(Activity != "0")
@@ -43,6 +45,8 @@ namespace deckcards
                         DisplayIntrunction();
                         break;
                 }
+
+                System.Console.Write("Please select the option: ");
                 Activity = Console.ReadLine();
             }
             
@@ -77,13 +81,125 @@ namespace deckcards
 
         public static void DisplayIntrunction()
         {
-            System.Console.WriteLine("Welcome");
-            System.Console.WriteLine("1 : Shuffle");
-            System.Console.WriteLine("2 : Deal");
-            System.Console.WriteLine("3 : Input the number of players");
-            System.Console.WriteLine("4 : Display all cards");
-            System.Console.WriteLine("9 : Reset all cards");
-            System.Console.WriteLine("0 : Exit");
+            Console.ForegroundColor =  Setting.MenuColor;
+
+            //Top Line
+            WriteSpace(Setting.LeftSpace);
+            Write(Setting.UpperLeftCorner);
+            WriteLine(Setting.LineWidth);
+            Write(Setting.UpperRightCorner);
+            System.Console.WriteLine();
+
+            //Line 1
+            WriteSpace(Setting.LeftSpace);
+            Write(Setting.vertical);
+            Write(Setting.Menu[0]);
+            WriteSpace(Setting.LineWidth - Setting.Menu[0].Length);
+            Write(Setting.vertical);
+            System.Console.WriteLine();
+
+            WriteDashLine();
+
+            //Line 2
+            WriteSpace(Setting.LeftSpace);
+            Write(Setting.vertical);
+            Write(Setting.Menu[1]);
+            WriteSpace(Setting.LineWidth - Setting.Menu[1].Length);
+            Write(Setting.vertical);
+            System.Console.WriteLine();
+
+            WriteDashLine();
+
+            //Line 3
+            WriteSpace(Setting.LeftSpace);
+            Write(Setting.vertical);
+            Write(Setting.Menu[2]);
+            WriteSpace(Setting.LineWidth - Setting.Menu[2].Length);
+            Write(Setting.vertical);
+            System.Console.WriteLine();
+
+            WriteDashLine();
+
+            //Line 4
+            WriteSpace(Setting.LeftSpace);
+            Write(Setting.vertical);
+            Write(Setting.Menu[3]);
+            WriteSpace(Setting.LineWidth - Setting.Menu[3].Length);
+            Write(Setting.vertical);
+            System.Console.WriteLine();
+
+            WriteDashLine();
+
+            //Line 5
+            WriteSpace(Setting.LeftSpace);
+            Write(Setting.vertical);
+            Write(Setting.Menu[4]);
+            WriteSpace(Setting.LineWidth - Setting.Menu[4].Length);
+            Write(Setting.vertical);
+            System.Console.WriteLine();
+
+            WriteDashLine();
+
+            //Line 6
+            WriteSpace(Setting.LeftSpace);
+            Write(Setting.vertical);
+            Write(Setting.Menu[5]);
+            WriteSpace(Setting.LineWidth - Setting.Menu[5].Length);
+            Write(Setting.vertical);
+            System.Console.WriteLine();
+
+            //Bottom Line
+            WriteSpace(Setting.LeftSpace);
+            Write(Setting.LowerLeftCorner);
+            WriteLine(Setting.LineWidth);
+            Write(Setting.LowerRightCorner);
+            System.Console.WriteLine();
+
+            Console.ResetColor();
         }
+
+        //Drawing Utilities
+        public static void WriteSpace(int num)
+        {
+            for (int i = 0; i < num; i++)
+            {
+                System.Console.Write(" ");
+            }
+        }
+        public static void Write(string str)
+        {
+            System.Console.Write(str);
+        }
+        public static void WriteLine(int num)
+        {
+            for (int i = 0; i < num; i++)
+            {
+
+                System.Console.Write(Setting.horizontal);
+            }
+        }
+        public static void WriteDash(int num)
+        {
+            for (int i = 0; i < num; i++)
+            {
+
+                System.Console.Write(Setting.dash);
+            }
+        }
+        public static void WriteDashLine()
+        {
+            //Dash Line
+            WriteSpace(Setting.LeftSpace);
+            Write(Setting.vertical);
+            Console.ForegroundColor = Setting.DashLineColor;
+            WriteDash(Setting.LineWidth);
+            Console.ForegroundColor = Setting.MenuColor;
+            Write(Setting.vertical);
+            System.Console.WriteLine();
+        }
+
+        //Drawing Utilities
+
+        public static ConsoleColor ForegroundColor { get; set; }
     }
 }
