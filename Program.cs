@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using human;
 
 namespace deckcards
 {
@@ -10,6 +11,7 @@ namespace deckcards
         {
             Deck d1 = new Deck();
             List<Player> Players = new List<Player>();
+            Monster monster = new Monster("Thy", 50, 20, 300);
 
             string Activity;
             d1.ListCard(13);
@@ -88,11 +90,11 @@ namespace deckcards
                             DisplayPlayerMenu();
                             Player p = Players[0];
                             p.ListCard(p.hand.Count);
-                            int MonsterHP = 300;
+                            // int monster.health = 300;
                             int Energy = 5;
                             System.Console.WriteLine($"Player HP: {p.HP}");
                             System.Console.WriteLine("Energy: " + Energy);
-                            System.Console.WriteLine("Monster HP: " + MonsterHP);
+                            System.Console.WriteLine("Monster HP: " + monster.health);
                             System.Console.Write($"Player {Players[0].name}'s option: ");
                             string PlayerChoice = Console.ReadLine();
                             while(PlayerChoice != "0")
@@ -117,14 +119,14 @@ namespace deckcards
                                                     Utils.WriteWarning("You don't have enough energy to use this card");
                                                 } else {
                                                     Energy -= c.EnergyCost;
-                                                    MonsterHP -= c.Damage;
+                                                    monster.health -= c.Damage;
                                                     p.discard(Int32.Parse(PlayerChoice) - 1);
-                                                    if (MonsterHP <= 0) {
+                                                    if (monster.health <= 0) {
                                                         System.Console.WriteLine("You won !");
                                                     }
                                                     System.Console.WriteLine($"Player HP: {p.HP}");
                                                     System.Console.WriteLine("Energy: " + Energy);
-                                                    System.Console.WriteLine("Monster HP: " + MonsterHP);
+                                                    System.Console.WriteLine("Monster HP: " + monster.health);
                                                     p.ListCard(p.hand.Count);
                                                 }
                                             }
@@ -164,7 +166,7 @@ namespace deckcards
                                     }
                                 }
                             }
-                            
+
                             p.hand.Clear();
                             d1.Reset();
                             d1.Shuffle();
