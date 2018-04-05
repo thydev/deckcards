@@ -23,7 +23,7 @@ namespace deckcards
                 {
                     case "1":
                         Console.WriteLine("Shuffled");
-                        d1.shuffle(200);
+                        d1.Shuffle(200);
                         break;
                     case "2":
                         Console.WriteLine("Case 2 : Deal?");
@@ -33,12 +33,12 @@ namespace deckcards
                         break;
                     case "4":
                         Console.WriteLine("Case 4 : Display all card");
-                        d1.listCard();
+                        d1.ListCard();
                         DisplayIntrunction();
                         break;
                     case "9":
                         Console.WriteLine("Case 9 : Reset all card");
-                        d1.reset();
+                        d1.Reset();
                         
                         break;
                     default:

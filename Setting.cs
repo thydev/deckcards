@@ -23,5 +23,10 @@ namespace deckcards
 
         public static ConsoleColor DashLineColor = ConsoleColor.DarkCyan;
         public static ConsoleColor MenuColor = ConsoleColor.Green;
+        public static ConsoleColor ClubsColor = ConsoleColor.Blue;
+        public static ConsoleColor DiamondsColor = ConsoleColor.DarkYellow;
+        public static ConsoleColor HeartsColor = ConsoleColor.Red;
+        public static ConsoleColor SpadesColor = ConsoleColor.Cyan;
+
     }
 }
