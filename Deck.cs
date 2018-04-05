@@ -9,6 +9,7 @@ namespace deckcards {
         public List<Card> Cards = new List<Card>();
         private string[] suits = {"♥", "♦", "♣", "♠"};
         public Deck(){
+            _rand = new Random();
             foreach (var suit in suits)
             {
                 for (int i = 1; i <= 13; i++)
@@ -25,9 +26,28 @@ namespace deckcards {
 
         public Card Deal(){
             Card dealCard;
-            dealCard = Cards[Cards.Count-1];
-            Cards.RemoveAt(Cards.Count-1);
-            return  dealCard;
+            if(Cards.Count != 0){
+                dealCard = Cards[Cards.Count-1];
+                Cards.RemoveAt(Cards.Count-1);
+                return  dealCard;
+                }
+            else{
+                return null;
+            }
+        }
+        public Card Deal(DiscardPile discard){
+            Card dealCard;
+            if(Cards.Count == 0){
+                Reshuffle(discard);
+            }
+            if(Cards.Count != 0){
+                dealCard = Cards[Cards.Count-1];
+                Cards.RemoveAt(Cards.Count-1);
+                return  dealCard;
+            }
+            else{
+                return null;
+            }
         }
 
         public void Reset(){
@@ -45,17 +65,22 @@ namespace deckcards {
             }
         }
 
-        public void Shuffle(int num){
-            _rand = new Random();
-            for (int i = 0; i < num; i++)
-            {
-                int idx1 = _rand.Next(0, Cards.Count);
-                int idx2 = _rand.Next(0, Cards.Count);
-                Card tmp = new Card();
-                tmp = Cards[idx1];
-                Cards[idx1] = Cards[idx2];
-                Cards[idx2] = tmp;
+        public void Shuffle(){
+            
+            for(int i = 0; i < Cards.Count; i++){
+                Card tmp = Cards[i];
+                int r = _rand.Next(i,Cards.Count);
+                Cards[i] = Cards[r];
+                Cards[r] = tmp;  //Knuth shuffle algorithm. Very useful. 
             }
+        }
+
+        public void Reshuffle(DiscardPile discard){
+            foreach(Card card in discard.Cards){
+                Cards.Add(card);
+                discard.Cards.Remove(card);
+            }
+            Shuffle();
         }
 
         public void ListCard(){

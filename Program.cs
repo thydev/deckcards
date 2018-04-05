@@ -25,7 +25,7 @@ namespace deckcards
                 {
                     case "1":
                         Console.WriteLine("Shuffled");
-                        d1.Shuffle(200);
+                        d1.Shuffle();
                         break;
                     case "2":
                         Console.WriteLine("Case 2 : Deal?");
