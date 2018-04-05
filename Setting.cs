@@ -8,6 +8,7 @@ namespace deckcards
                 " 2 : Deal",
                 " 3 : Input the number of players",
                 " 4 : Display all cards",
+                " 5 : Display all players",
                 " 9 : Reset all cards",
                 " 0 : Exit"
             };
@@ -27,6 +28,8 @@ namespace deckcards
         public static ConsoleColor DiamondsColor = ConsoleColor.DarkYellow;
         public static ConsoleColor HeartsColor = ConsoleColor.Red;
         public static ConsoleColor SpadesColor = ConsoleColor.Cyan;
+
+        public static ConsoleColor WarningColor = ConsoleColor.Red;
 
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace deckcards
 {
@@ -8,6 +9,7 @@ namespace deckcards
         static void Main(string[] args)
         {
             Deck d1 = new Deck();
+            List<Player> Players = new List<Player>();
             Player player1 = new Player("Toto");
             Player player2 = new Player("Thy");
 
@@ -29,11 +31,40 @@ namespace deckcards
                         Console.WriteLine("Case 2 : Deal?");
                         break;
                     case "3":
-                        Console.WriteLine("Case 3");
+                        if (Players.Count > 0) {
+                            Console.ForegroundColor = Setting.WarningColor;
+                            System.Console.WriteLine("All players are already accepted. Please press 5 to see all players.");
+                            Console.ResetColor();
+                        } else {
+                            Console.Write("Input the number of player (2-6) : ");
+                            int NumberOfPlayer = 0;
+                            Int32.TryParse(Console.ReadLine(), out NumberOfPlayer);
+                            if(NumberOfPlayer >= 2 && NumberOfPlayer <= 6)
+                            {
+                                Players = GetPlayer(NumberOfPlayer);
+                            } else {
+                                Console.ForegroundColor = Setting.WarningColor;
+                                System.Console.WriteLine("We accept only number 2 to 6.");
+                                Console.ResetColor();
+                            }
+                        }
+                        
                         break;
                     case "4":
                         Console.WriteLine("Case 4 : Display all card");
                         d1.ListCard();
+                        DisplayIntrunction();
+                        break;
+                    case "5":
+                        Console.WriteLine("Case 5 : Display all players");
+                        if(Players.Count > 0)
+                        {
+                            DisplayPlayer(Players);
+                        } else {
+                            Console.ForegroundColor = Setting.WarningColor;
+                            System.Console.WriteLine("Choose option number 3 to input the player!");
+                            Console.ResetColor();
+                        }
                         DisplayIntrunction();
                         break;
                     case "9":
@@ -148,6 +179,16 @@ namespace deckcards
             Write(Setting.vertical);
             System.Console.WriteLine();
 
+            WriteDashLine();
+
+            //Line 7
+            WriteSpace(Setting.LeftSpace);
+            Write(Setting.vertical);
+            Write(Setting.Menu[6]);
+            WriteSpace(Setting.LineWidth - Setting.Menu[6].Length);
+            Write(Setting.vertical);
+            System.Console.WriteLine();
+
             //Bottom Line
             WriteSpace(Setting.LeftSpace);
             Write(Setting.LowerLeftCorner);
@@ -158,6 +199,32 @@ namespace deckcards
             Console.ResetColor();
         }
 
+        public static List<Player> GetPlayer(int num){
+            List<Player> Players = new List<Player>();
+            string PlayerName = "";
+            int Counter = num;
+            while (Counter > 0)
+            {
+                System.Console.Write($"Player {num - Counter + 1} name: ");
+                PlayerName = Console.ReadLine().Trim();
+                if(PlayerName != "")
+                {   
+                    Players.Add(new Player(PlayerName));
+                    Counter--;
+                }
+            }
+            return Players;
+        }
+
+        public static void DisplayPlayer(List<Player> Players)
+        {
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            foreach (var Player in Players)
+            {
+                System.Console.WriteLine($"Player {Player.name}");
+            }
+            Console.ResetColor();
+        }
         //Drawing Utilities
         public static void WriteSpace(int num)
         {
@@ -200,6 +267,5 @@ namespace deckcards
 
         //Drawing Utilities
 
-        public static ConsoleColor ForegroundColor { get; set; }
     }
 }
