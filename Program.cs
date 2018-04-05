@@ -24,7 +24,7 @@ namespace deckcards
                 {
                     case "shuffle":
                         Console.WriteLine("Shuffled");
-                        d1.Shuffle(200);
+                        d1.Shuffle();
                         break;
 
                     case "2-autot":
