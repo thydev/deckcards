@@ -22,12 +22,11 @@ namespace deckcards {
                     System.Console.Write(str);
                 }
             }
-            
+
             public static void WriteLine(int num)
             {
                 for (int i = 0; i < num; i++)
                 {
-
                     System.Console.Write(Setting.horizontal);
                 }
             }
@@ -35,7 +34,6 @@ namespace deckcards {
             {
                 for (int i = 0; i < num; i++)
                 {
-
                     System.Console.Write(Setting.dash);
                 }
             }
@@ -51,5 +49,14 @@ namespace deckcards {
                 System.Console.WriteLine();
             }
             //Drawing Utilities
+
+            public static void WriteWarning(string str)
+            {
+                Console.ForegroundColor = Setting.WarningColor;
+                System.Console.WriteLine(str);
+                Console.ResetColor();
+            }
+            
+
         }
 }
