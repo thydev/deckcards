@@ -19,7 +19,7 @@ namespace deckcards
         public static string vertical = "║";
         public static string horizontal = "═";
         public static string dash = "-";
-        public static int LeftSpace = 10;
+        public static int LeftSpace = 30;
         public static int LineWidth = 50;
 
         public static ConsoleColor DashLineColor = ConsoleColor.DarkCyan;

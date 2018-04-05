@@ -52,8 +52,9 @@ namespace deckcards
                         break;
                     case "4":
                         Console.WriteLine("Case 4 : Display all card");
-                        d1.ListCard();
+                        // d1.ListCard();
                         DisplayIntrunction();
+                        d1.ListCard(13);
                         break;
                     case "5":
                         Console.WriteLine("Case 5 : Display all players");
@@ -76,7 +77,7 @@ namespace deckcards
                         DisplayIntrunction();
                         break;
                 }
-
+                System.Console.WriteLine();
                 System.Console.Write("Please select the option: ");
                 Activity = Console.ReadLine();
             }
@@ -113,87 +114,35 @@ namespace deckcards
         public static void DisplayIntrunction()
         {
             Console.ForegroundColor =  Setting.MenuColor;
-
+            System.Console.WriteLine();
             //Top Line
-            WriteSpace(Setting.LeftSpace);
-            Write(Setting.UpperLeftCorner);
-            WriteLine(Setting.LineWidth);
-            Write(Setting.UpperRightCorner);
+            Utils.WriteSpace(Setting.LeftSpace);
+            Utils.Write(Setting.UpperLeftCorner);
+            Utils.WriteLine(Setting.LineWidth);
+            Utils.Write(Setting.UpperRightCorner);
             System.Console.WriteLine();
 
-            //Line 1
-            WriteSpace(Setting.LeftSpace);
-            Write(Setting.vertical);
-            Write(Setting.Menu[0]);
-            WriteSpace(Setting.LineWidth - Setting.Menu[0].Length);
-            Write(Setting.vertical);
-            System.Console.WriteLine();
+            //Display the main mene
+            for (int i = 0; i < Setting.Menu.Length; i++)
+            {
+                Utils.WriteSpace(Setting.LeftSpace);
+                Utils.Write(Setting.vertical);
+                Utils.Write(Setting.Menu[i]);
+                Utils.WriteSpace(Setting.LineWidth - Setting.Menu[i].Length);
+                Utils.Write(Setting.vertical);
+                System.Console.WriteLine();
 
-            WriteDashLine();
-
-            //Line 2
-            WriteSpace(Setting.LeftSpace);
-            Write(Setting.vertical);
-            Write(Setting.Menu[1]);
-            WriteSpace(Setting.LineWidth - Setting.Menu[1].Length);
-            Write(Setting.vertical);
-            System.Console.WriteLine();
-
-            WriteDashLine();
-
-            //Line 3
-            WriteSpace(Setting.LeftSpace);
-            Write(Setting.vertical);
-            Write(Setting.Menu[2]);
-            WriteSpace(Setting.LineWidth - Setting.Menu[2].Length);
-            Write(Setting.vertical);
-            System.Console.WriteLine();
-
-            WriteDashLine();
-
-            //Line 4
-            WriteSpace(Setting.LeftSpace);
-            Write(Setting.vertical);
-            Write(Setting.Menu[3]);
-            WriteSpace(Setting.LineWidth - Setting.Menu[3].Length);
-            Write(Setting.vertical);
-            System.Console.WriteLine();
-
-            WriteDashLine();
-
-            //Line 5
-            WriteSpace(Setting.LeftSpace);
-            Write(Setting.vertical);
-            Write(Setting.Menu[4]);
-            WriteSpace(Setting.LineWidth - Setting.Menu[4].Length);
-            Write(Setting.vertical);
-            System.Console.WriteLine();
-
-            WriteDashLine();
-
-            //Line 6
-            WriteSpace(Setting.LeftSpace);
-            Write(Setting.vertical);
-            Write(Setting.Menu[5]);
-            WriteSpace(Setting.LineWidth - Setting.Menu[5].Length);
-            Write(Setting.vertical);
-            System.Console.WriteLine();
-
-            WriteDashLine();
-
-            //Line 7
-            WriteSpace(Setting.LeftSpace);
-            Write(Setting.vertical);
-            Write(Setting.Menu[6]);
-            WriteSpace(Setting.LineWidth - Setting.Menu[6].Length);
-            Write(Setting.vertical);
-            System.Console.WriteLine();
+                if (i < Setting.Menu.Length - 1)
+                {
+                    Utils.WriteDashLine();
+                }
+            }
 
             //Bottom Line
-            WriteSpace(Setting.LeftSpace);
-            Write(Setting.LowerLeftCorner);
-            WriteLine(Setting.LineWidth);
-            Write(Setting.LowerRightCorner);
+            Utils.WriteSpace(Setting.LeftSpace);
+            Utils.Write(Setting.LowerLeftCorner);
+            Utils.WriteLine(Setting.LineWidth);
+            Utils.Write(Setting.LowerRightCorner);
             System.Console.WriteLine();
 
             Console.ResetColor();
@@ -225,47 +174,7 @@ namespace deckcards
             }
             Console.ResetColor();
         }
-        //Drawing Utilities
-        public static void WriteSpace(int num)
-        {
-            for (int i = 0; i < num; i++)
-            {
-                System.Console.Write(" ");
-            }
-        }
-        public static void Write(string str)
-        {
-            System.Console.Write(str);
-        }
-        public static void WriteLine(int num)
-        {
-            for (int i = 0; i < num; i++)
-            {
-
-                System.Console.Write(Setting.horizontal);
-            }
-        }
-        public static void WriteDash(int num)
-        {
-            for (int i = 0; i < num; i++)
-            {
-
-                System.Console.Write(Setting.dash);
-            }
-        }
-        public static void WriteDashLine()
-        {
-            //Dash Line
-            WriteSpace(Setting.LeftSpace);
-            Write(Setting.vertical);
-            Console.ForegroundColor = Setting.DashLineColor;
-            WriteDash(Setting.LineWidth);
-            Console.ForegroundColor = Setting.MenuColor;
-            Write(Setting.vertical);
-            System.Console.WriteLine();
-        }
-
-        //Drawing Utilities
+        
 
     }
 }
